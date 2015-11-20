@@ -2,6 +2,7 @@ package peuler.question;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Q5 {
 
@@ -22,24 +23,21 @@ public class Q5 {
 	}
 
 	public static void main(String[] args) {
-		// Scanner scanner = new Scanner(System.in);
-		// int tcase = scanner.nextInt();
-		// List<Long> input = new ArrayList<Long>();
-		// for (int i = 0; i < tcase; i++) {
-		// input.add(scanner.nextLong());
-		// }
-		// for (Long value : input) {
-		// }
-		// scanner.close();
-
-		int value = 3;
-		findOkek(value);
-		findOkek(10);
+		Scanner scanner = new Scanner(System.in);
+		int tcase = scanner.nextInt();
+		List<Integer> input = new ArrayList<Integer>();
+		for (int i = 0; i < tcase; i++) {
+			input.add(scanner.nextInt());
+		}
+		for (Integer value : input) {
+			findOkek(value);
+		}
+		scanner.close();
 
 	}
 
 	private static void findOkek(int value) {
-		int[] nums = new int[value - 2];
+		int[] nums = new int[value - 1];
 		int quadrant = 2;
 		for (int i = 0; i < nums.length; i++) {
 			nums[i] = quadrant;
@@ -47,10 +45,17 @@ public class Q5 {
 		}
 		List<Integer> factors = new ArrayList<>();
 		for (int prime : primes) {
-			if (prime > nums[nums.length - 1])
+			boolean allOne = true;
+			for (int i = 0; i < nums.length; i++) {
+				if (nums[i] != 1) {
+					allOne = false;
+					break;
+				}
+			}
+			if (allOne)
 				break;
-			boolean primeAdded = false;
 			while (true) {
+				boolean primeAdded = false;
 				boolean divisible = false;
 				for (int j = 0; j < nums.length; j++) {
 					int num = nums[j];
