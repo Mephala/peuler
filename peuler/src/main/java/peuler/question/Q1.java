@@ -1,9 +1,13 @@
 package peuler.question;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Q1 {
+
+	private static final BigDecimal v2 = new BigDecimal(2);
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -13,24 +17,24 @@ public class Q1 {
 			input.add(scanner.nextLong());
 		}
 		for (Long value : input) {
-
+			long sum = findSum(value);
+			System.out.println(sum);
 		}
 
 		scanner.close();
-		long value = 10;
-		long sum = findSum(value);
-		System.out.println(sum);
+
+	}
+
+	private static long findAllSum(long value) {
+		return (value * (value + 1)) / 2;
 	}
 
 	private static long findSum(long value) {
-		long max = 0;
-		for (int i = 0; i < value; i++) {
-			if (i % 3 == 0)
-				max += i;
-			else if (i % 5 == 0)
-				max += i;
-		}
-		return max;
+		value--;
+		long sum3 = 3 * findAllSum(value / 3);
+		long sum5 = 5 * findAllSum(value / 5);
+		long sum15 = 15 * findAllSum(value / 15);
+		return sum3 + sum5 - sum15;
 	}
 
 }
