@@ -24,9 +24,9 @@ public class Q8 {
 
 	private static void findLargestConsecDigitProduct(int consc, String num) {
 		int max = 0;
-		for (int i = 0; i < num.length() - consc; i += consc) {
+		for (int i = 0; i <= num.length() - consc; i++) {
 			int product = 1;
-			for (int j = i + 1; j < i + 1 + consc; j++) {
+			for (int j = i; j < i + consc; j++) {
 				product *= Integer.parseInt(num.substring(j, j + 1));
 				if (product == 0)
 					break;
