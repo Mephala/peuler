@@ -8,6 +8,11 @@ public class Q7 {
 
 	private static List<Long> primes = new ArrayList<>();
 
+	static {
+		primes.add(2l);
+		primes.add(3l);
+	}
+
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
@@ -28,24 +33,25 @@ public class Q7 {
 			System.out.println(primes.get(i - 1));
 			return;
 		}
-
-		for (long j = 2; j < Long.MAX_VALUE; j++) {
+		for (long j = primes.get(primes.size() - 1); j < Long.MAX_VALUE; j += 2) {
+			if (primes.contains(Long.valueOf(j)))
+				continue;
+			long sqrt = (long) Math.sqrt(new Double(j));
 			boolean isPrime = true;
-			for (Long prime : primes) {
-				if (j % prime == 0) {
+			for (long k = 2; k <= sqrt; k++) {
+				if (j % k == 0) {
 					isPrime = false;
 					break;
 				}
 			}
 			if (isPrime) {
 				primes.add(j);
-			}
-			if (primes.size() >= i) {
-				System.out.println(primes.get(i - 1));
-				return;
+				if (primes.size() >= i) {
+					System.out.println(primes.get(i - 1));
+					return;
+				}
 			}
 		}
-
 	}
 
 }
